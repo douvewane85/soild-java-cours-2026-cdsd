@@ -1,9 +1,18 @@
 import java.util.Scanner;
 
+import entity.Titulaire;
+import entity.Wallet;
+import repository.TransactionRepository;
+import services.NotificationService;
+import services.WalletService;
+
 public class Main {
     public static void main(String[] args) throws Exception {
-        Wallet wallet =new Wallet(100000,"Baila Wane","771001010");
-        WalletService walletService =new WalletService();
+        Titulaire titulaire=new Titulaire("Baila Wane","771001010");
+        Wallet wallet =new Wallet(100000,titulaire);
+        NotificationService notificationService=new NotificationService();
+        TransactionRepository transactionRepository=new TransactionRepository();
+        WalletService walletService =new WalletService(notificationService, transactionRepository);
         boolean running=true;
         while(running){
            System.out.println("Solde actuel : "+wallet.getSolde());
