@@ -15,9 +15,9 @@ public class WalletService {
 
 
 
-     public void retraitFonds(Wallet wallet,double montant,String methode) throws RuntimeException{
+     public void retraitFonds(Wallet wallet,double montant,IPayement payement) throws RuntimeException{
         //1- Retrait
-         double frais=calculFrais(montant,methode);
+          double frais= calculFrais(montant,payement);
           wallet.retrait(montant+frais);
          //3- Enregistrer la tranasaction dans la BD
         var result=    this.notificationService.sendSms("Valider la transaction de retrait de "+montant+"sur le wallet de "+wallet.getTitulaire().getTelephone()+"frais de transaction : "+frais);
@@ -30,23 +30,14 @@ public class WalletService {
 
 
 
-   public double calculFrais(double montant,String methode){
-    if(methode.equals("ORANGE_MONEY"))  {
-        return montant*0.01;
-        }
-        else if(methode.equals("WAVE")){
-            return montant*0.015;
-        }else if(methode.equals("CARTE_BANCAIRE")){
-            return montant*0.02;
-        }
-        return 0;
-    }
+     private double calculFrais(double montant,IPayement payement){
+          return  payement.calculFrais(montant) ;
+      }
 
 
-
-     public void ajouterFonds(Wallet wallet,double montant,String methode) throws IllegalArgumentException{
+     public void ajouterFonds(Wallet wallet,double montant,IPayement payement) throws IllegalArgumentException{
      //1-Depot
-       double frais= calculFrais(montant,methode);
+       double frais= calculFrais(montant,payement);
        wallet.depot(montant-frais); 
      //2-Enregistre dans BD
         transactionRepository.save(wallet,montant,"DEPOT");

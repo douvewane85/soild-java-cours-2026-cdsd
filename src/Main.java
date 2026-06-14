@@ -3,7 +3,11 @@ import java.util.Scanner;
 import entity.Titulaire;
 import entity.Wallet;
 import repository.TransactionRepository;
+import services.IPayement;
 import services.NotificationService;
+import services.PayementCarte;
+import services.PayementOM;
+import services.PayementWave;
 import services.WalletService;
 
 public class Main {
@@ -28,8 +32,15 @@ public class Main {
                 double montant = scanner.nextDouble();
                System.out.println("Methode(ORANGE_MONEY/WAVE/CARTE_BANCAIRE)");
                String methode=scanner.next();
-
-               walletService.ajouterFonds(wallet, montant, methode);  
+               IPayement payement;
+               if (methode.equals("ORANGE_MONEY")) {
+                  payement=new PayementOM();
+               }else if(methode.equals("WAVE")){
+                payement=new PayementWave();
+               }else{
+                    payement=new PayementCarte();
+               }
+               walletService.ajouterFonds(wallet, montant, payement);  
              } catch (IllegalArgumentException e) {
                    System.out.println(e.getMessage());
             }
@@ -41,7 +52,15 @@ public class Main {
                   double montant = scanner.nextDouble();
                     System.out.println("Methode(ORANGE_MONEY/WAVE/CARTE_BANCAIRE");
                    String methode=scanner.next();
-                   walletService.retraitFonds(wallet, montant, methode);
+                    IPayement payement;
+                        if (methode.equals("ORANGE_MONEY")) {
+                            payement=new PayementOM();
+                        }else if(methode.equals("WAVE")){
+                            payement=new PayementWave();
+                        }else{
+                                payement=new PayementCarte();
+                        }
+                   walletService.retraitFonds(wallet, montant, payement);
                } catch (RuntimeException e) {
                  System.out.println(e.getMessage());
                }
