@@ -1,6 +1,6 @@
 package cours.approch2;
 
-public class Carre  extends Figure implements ICarre{
+public class Carre   implements ICarre{
    private  double  cote;
    
    @Override

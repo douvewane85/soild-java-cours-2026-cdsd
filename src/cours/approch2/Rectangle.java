@@ -1,6 +1,6 @@
 package cours.approch2;
 
-public class Rectangle extends Figure  implements IRectangle{
+public class Rectangle  implements IRectangle{
        private double longeur;
       private double largeur;
    

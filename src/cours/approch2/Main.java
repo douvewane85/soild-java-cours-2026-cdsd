@@ -10,20 +10,20 @@ public class Main {
     Carre carre=new Carre();
     Rectangle rectangle=new Rectangle();
 
-       Figure fig=new Rectangle();
+       IFigure fig=new Rectangle();
        Rectangle rect=(Rectangle)fig;
 
-       Figure fig1=new Carre();
+       IFigure fig1=new Carre();
        Carre car=(Carre)fig1;
 
 
     //Liste de Carre et de Rectangle
 
-     List<Figure> figures= new ArrayList<>();
+     List<IFigure> figures= new ArrayList<>();
        figures.add(new Rectangle());
        figures.add(new Carre());
 
-       for (Figure figure : figures) {
+       for (IFigure figure : figures) {
              figure.surface();
              if (figure instanceof Carre) {
                   ((Carre)figure).getCote();
