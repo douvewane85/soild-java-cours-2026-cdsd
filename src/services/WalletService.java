@@ -38,7 +38,7 @@ public class WalletService {
      public void ajouterFonds(Wallet wallet,double montant,IPayement payement) throws IllegalArgumentException{
      //1-Depot
        double frais= calculFrais(montant,payement);
-       wallet.depot(montant-frais); 
+         wallet.depot(montant-frais); 
      //2-Enregistre dans BD
         transactionRepository.save(wallet,montant,"DEPOT");
      //3-Envoie un sms information

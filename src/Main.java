@@ -12,6 +12,9 @@ import services.WalletService;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+          int x=12;
+          double y=(double)x;
+
         Titulaire titulaire=new Titulaire("Baila Wane","771001010");
         Wallet wallet =new Wallet(100000,titulaire);
         NotificationService notificationService=new NotificationService();
