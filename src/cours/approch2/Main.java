@@ -1,4 +1,4 @@
-package cours;
+package cours.approch2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +25,11 @@ public class Main {
 
        for (Figure figure : figures) {
              figure.surface();
-              if (figure instanceof Carre) {
-                   ((Carre)figure).getCote();
-              }
-
-              if (figure instanceof Rectangle) {
-                    ((Rectangle)figure).getLongeur();
-              }
+             if (figure instanceof Carre) {
+                  ((Carre)figure).getCote();
+             } else {
+                     ((Rectangle)figure).getLongeur();
+             }
        }
     }
     
